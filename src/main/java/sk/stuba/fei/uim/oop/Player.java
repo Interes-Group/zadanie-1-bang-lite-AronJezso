@@ -23,7 +23,7 @@ public class Player {
         this.lives = lives;
     }
 
-    ArrayList<Object> Hand;
+    ArrayList<Object> Hand = new ArrayList<Object>();
 
     public ArrayList<Object> getHand() {
         return Hand;

@@ -39,7 +39,8 @@ public class Game {
         players.add(Player4);
         System.out.println("You have these player names:");
         for(int i=0;i!=player_count;i++)
-        System.out.println(players.get(i).name); // Get player names
+        System.out.println(i + " " + players.get(i).name); // Get player names
+
         /////BLUE CARDS/////BLUE CARDS////BLUE CARDS////BLUE CARDS///////////
         ArrayList<Object> Deck_of_many_things = new ArrayList<>();
         Deck_of_many_things.add(new Barrel());
@@ -71,6 +72,16 @@ public class Game {
         //for(int i=0;i!=Deck_of_many_things.size();i++)// Deckbuilding fuckup control
             //System.out.println(i+" - "+ Deck_of_many_things.get(i).getClass());
 
+    ///////////////////////////////
+        for(int k=player_count-1;k!=-1;k--) {
+            for (int i = 0; i != 4; i++) {
+                players.get(k).Hand.add(Deck_of_many_things.get(0));
+                Deck_of_many_things.remove(0);
+            }
+            for (int i = 0; i != players.get(k).Hand.size(); i++)// Deckbuilding fuckup control
+                System.out.println(i + " player"+(k+1)+" cards- " + players.get(k).Hand.get(i));
+
+        };
 
     }}
 
