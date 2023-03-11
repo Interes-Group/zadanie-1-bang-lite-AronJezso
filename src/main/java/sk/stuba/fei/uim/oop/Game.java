@@ -1,9 +1,9 @@
 package sk.stuba.fei.uim.oop;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
-
+import sk.stuba.fei.uim.oop.cards.*;
 public class Game {
 
     public void settings() {
@@ -40,9 +40,37 @@ public class Game {
         System.out.println("You have these player names:");
         for(int i=0;i!=player_count;i++)
         System.out.println(players.get(i).name); // Get player names
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        /////BLUE CARDS/////BLUE CARDS////BLUE CARDS////BLUE CARDS///////////
+        ArrayList<Object> Deck_of_many_things = new ArrayList<>();
+        Deck_of_many_things.add(new Barrel());
+        Deck_of_many_things.add(new Barrel());
+        Deck_of_many_things.add(new Dynamite());
+        for(int i=0;i!=3;i++) {
+            Deck_of_many_things.add(new Prison());
+        }
+        /////BROWN CARDS////
+        for(int i=0;i!=30;i++) {
+            Deck_of_many_things.add(new Bang());
+        }
+        for(int i=0;i!=15;i++) {
+            Deck_of_many_things.add(new Missed());
+        }
+        for(int i=0;i!=8;i++) {
+            Deck_of_many_things.add(new Beer());
+        }
+        for(int i=0;i!=6;i++) {
+            Deck_of_many_things.add(new Cat_Balou());
+        }
+        for(int i=0;i!=4;i++) {
+            Deck_of_many_things.add(new Stagecoach());
+        }
+        for(int i=0;i!=2;i++) {
+            Deck_of_many_things.add(new Indians());
+        }
+        Collections.shuffle(Deck_of_many_things);
+        //for(int i=0;i!=Deck_of_many_things.size();i++)// Deckbuilding fuckup control
+            //System.out.println(i+" - "+ Deck_of_many_things.get(i).getClass());
 
 
-
-}}
+    }}
 
