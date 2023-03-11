@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.Scanner;
 import sk.stuba.fei.uim.oop.cards.*;
 public class Game {
+    public Game() {
+        settings();
+    }
 
     public void settings() {
         Scanner scanIn = new Scanner(System.in);
@@ -77,11 +80,13 @@ public class Game {
             for (int i = 0; i != 4; i++) {
                 players.get(k).Hand.add(Deck_of_many_things.get(0));
                 Deck_of_many_things.remove(0);
-            }
+            }}
+        for(int k=0;k!=player_count;k++) {
             for (int i = 0; i != players.get(k).Hand.size(); i++)// Deckbuilding fuckup control
-                System.out.println(i + " player"+(k+1)+" cards- " + players.get(k).Hand.get(i));
 
-        };
+                System.out.println((i+1) + " player" + (k + 1) + " cards- " + players.get(k).Hand.get(i).getClass().getSimpleName());
+
+        }
 
     }}
 
