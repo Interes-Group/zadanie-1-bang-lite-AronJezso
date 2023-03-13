@@ -9,6 +9,7 @@ public class Game {
         settings();
     }
 
+
     public void settings() {
         Scanner scanIn = new Scanner(System.in);
         int player_count;
@@ -23,6 +24,7 @@ public class Game {
             System.out.println("You entered " +player_count + "!");
         }
         System.out.println("Thank you");
+
         ///////////////////////////////////////////////////////////////////////////////////////////////
         ArrayList<Player> players = new ArrayList<>();
         Player Player1 = new Player(4);
@@ -32,16 +34,18 @@ public class Game {
         Player Player2 = new Player(4);
         Player2.setName("Player2");
         players.add(Player2);
-
-        Player Player3 = new Player(4);
-        Player3.setName("Player3");
-        players.add(Player3);
-
-        Player Player4 = new Player(4);
-        Player4.setName("Player4");
-        players.add(Player4);
+        if(player_count>2) {
+            Player Player3 = new Player(4);
+            Player3.setName("Player3");
+            players.add(Player3);
+        }
+        if(player_count==4) {
+            Player Player4 = new Player(4);
+            Player4.setName("Player4");
+            players.add(Player4);
+        }
         System.out.println("You have these player names:");
-        for(int i=0;i!=player_count;i++) {
+        for(int i=0;i!=players.size();i++) {
             System.out.println(i + " " + players.get(i).getName()); // Get player names
         }
         /////BLUE CARDS/////BLUE CARDS////BLUE CARDS////BLUE CARDS///////////
@@ -77,12 +81,12 @@ public class Game {
 
     ///////////////////////////////
 
-        for(int k=player_count-1;k!=-1;k--) {
+        for(int k=players.size()-1;k!=-1;k--) {
             for (int i = 0; i != 4; i++) {
                 players.get(k).Hand.add(Deck_of_many_things.get(0));
                 Deck_of_many_things.remove(0);
             }}
-        //for(int k=0;k!=player_count;k++) {
+        //for(int k=0;k!=players.size();k++) {
             //for (int i = 0; i != players.get(k).Hand.size(); i++)// Deckbuilding fuckup control
 
                 //System.out.println((i+1) + " player" + (k + 1) + " cards- " + players.get(k).Hand.get(i).getName());
@@ -91,7 +95,7 @@ public class Game {
        int answer;
        for(int turns=1;true;turns++)
        {
-           for(int i=0;i!=player_count;i++) {
+           for(int i=0;i!=players.size();i++) {
                System.out.println(players.get(i).getName());
                System.out.println("turn = " + turns);
                 // 2 CARD DRAWING
@@ -107,8 +111,8 @@ public class Game {
                }
                System.out.print("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
                answer = scanIn.nextInt();
-               while(answer > 0 && answer < players.get(i).Hand.size()){
-                   players.get(i).Hand.get(answer-1).play();
+               while(answer > 0 && answer <= players.get(i).Hand.size()){
+                   players.get(i).Hand.get(answer-1).play(players,i,Deck_of_many_things);
                    Deck_of_many_things.add(players.get(i).Hand.get(answer-1));
                    players.get(i).Hand.remove(answer-1);
                    // Deckbuilding fuckup control
@@ -118,6 +122,7 @@ public class Game {
                    System.out.print("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
                    answer = scanIn.nextInt();
                }
+               // Too many cards
                while(players.get(i).Hand.size()>players.get(i).getLives()){
                    System.out.println("you have too many cards select one to discard");
                    for (int card = 0; card != players.get(i).Hand.size(); card++) {// Deckbuilding fuckup control
@@ -132,8 +137,12 @@ public class Game {
 
                }
            }
+        if(players.size()==1){
 
+            break;
+        }
        }
+       System.out.println("CONGRATS " + players.get(0).getName() + "WON");
     }
 
 

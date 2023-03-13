@@ -1,5 +1,9 @@
 package sk.stuba.fei.uim.oop.cards;
 
+import sk.stuba.fei.uim.oop.Player;
+
+import java.util.ArrayList;
+
 public class Beer extends Card{
 
     public Beer() {
@@ -7,7 +11,7 @@ public class Beer extends Card{
     }
 
     @Override
-    public void play(){
+    public void play(ArrayList<Player> players,int player,ArrayList<Card> deck){
 
     }
 }
