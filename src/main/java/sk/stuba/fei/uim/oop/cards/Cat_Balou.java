@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop.cards;
 
-public class Cat_Balou {
-    String name = "Cat Balou";
+public class Cat_Balou extends Card{
+    public Cat_Balou() {
+        super("Cat Balou");
+    }
 
-    public String getName() {
-        return name;
+    @Override
+    public void play(){
+
     }
 }

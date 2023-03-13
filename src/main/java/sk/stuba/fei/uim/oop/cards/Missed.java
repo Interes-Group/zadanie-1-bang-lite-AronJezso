@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop.cards;
 
-public class Missed {
-    String name = "Missed";
+public class Missed extends Card{
+    public Missed() {
+        super("Missed");
+    }
 
-    public String getName() {
-        return name;
+    @Override
+    public void play(){
+
     }
 }

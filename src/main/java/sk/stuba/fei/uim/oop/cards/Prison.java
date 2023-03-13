@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop.cards;
 
-public class Prison {
-    String name = "Prison";
+public class Prison extends Card{
+    public Prison() {
+        super("Prison");
+    }
 
-    public String getName() {
-        return name;
+    @Override
+    public void play(){
+
     }
 }

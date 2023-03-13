@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop.cards;
 
-public class Barrel {
-    String name = "Barrel";
+public class Barrel extends Card{
 
-    public String getName() {
-        return name;
+    public Barrel() {
+        super("Barrel");
+    }
+    @Override
+    public void play(){
+
     }
 }

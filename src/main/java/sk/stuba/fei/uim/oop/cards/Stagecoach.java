@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop.cards;
 
-public class Stagecoach {
-    String name = "Stagecoach";
+public class Stagecoach extends Card{
+    public Stagecoach() {
+        super("Stagecoach");
+    }
 
-    public String getName() {
-        return name;
+    @Override
+    public void play(){
+
     }
 }

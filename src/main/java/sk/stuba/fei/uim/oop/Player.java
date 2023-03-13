@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop;
 
+import sk.stuba.fei.uim.oop.cards.Card;
+
 import java.util.ArrayList;
 
 public class Player {
-    String name;
+    private String name;
+    private int lives;
 
     public String getName() {
         return name;
@@ -13,7 +16,13 @@ public class Player {
         this.name = name;
     }
     //////////////////////////////////////////
-    int lives = 4;
+
+
+    public Player(int lives) {
+
+        this.lives=lives;
+
+    }
 
     public int getLives() {
         return lives;
@@ -23,13 +32,13 @@ public class Player {
         this.lives = lives;
     }
 
-    ArrayList<Object> Hand = new ArrayList<Object>();
+    ArrayList<Card> Hand = new ArrayList<Card>();
 
-    public ArrayList<Object> getHand() {
+    public ArrayList<Card> getHand() {
         return Hand;
     }
 
-    public void setHand(ArrayList<Object> hand) {
+    public void setHand(ArrayList<Card> hand) {
         Hand = hand;
     }
 }

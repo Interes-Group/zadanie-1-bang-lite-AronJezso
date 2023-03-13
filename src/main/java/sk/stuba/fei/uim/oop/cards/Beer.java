@@ -1,9 +1,13 @@
 package sk.stuba.fei.uim.oop.cards;
 
-public class Beer {
-    String name = "Beer";
+public class Beer extends Card{
 
-    public String getName() {
-        return name;
+    public Beer() {
+        super("Beer");
+    }
+
+    @Override
+    public void play(){
+
     }
 }

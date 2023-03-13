@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop.cards;
 
-public class Indians {
-    String name = "Indians";
+public class Indians extends Card{
+    public Indians() {
+        super("Indians");
+    }
 
-    public String getName() {
-        return name;
+    @Override
+    public void play(){
+
     }
 }

@@ -1,9 +1,12 @@
 package sk.stuba.fei.uim.oop.cards;
 
-public class Dynamite {
-    String name = "Dynamite";
+public class Dynamite extends Card{
+    public Dynamite() {
+        super("Dynamite");
+    }
 
-    public String getName() {
-        return name;
+    @Override
+    public void play(){
+
     }
 }
