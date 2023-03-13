@@ -105,6 +105,7 @@ public class Game {
                }
                System.out.println(players.get(i).getName() + " -- lives: " + players.get(i).getLives());
                // card play
+
                for (int card = 0; card != players.get(i).Hand.size(); card++) {// Deckbuilding fuckup control
 
                    System.out.println((card + 1) +  " card- " + players.get(i).Hand.get(card).getName());
@@ -119,6 +120,7 @@ public class Game {
                    for (int card = 0; card != players.get(i).Hand.size(); card++) {
                        System.out.println((card + 1) + " card- " + players.get(i).Hand.get(card).getName());
                    }
+                   System.out.println(players.get(i).getName() + " -- lives: " + players.get(i).getLives());
                    System.out.print("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
                    answer = scanIn.nextInt();
                }

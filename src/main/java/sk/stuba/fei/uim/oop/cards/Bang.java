@@ -23,7 +23,14 @@ public class Bang extends Card {
         if(player == answer-1){
             System.out.print("\nYou cant shoot yourself(Lets not be that kinky)\nTry again:");
         }}
-
+        for(int v=0;v!=players.get(answer-1).getHand().size();v++){
+            if((players.get(answer-1).getHand().get(v) instanceof Missed)==true){
+                deck.add(players.get(answer-1).getHand().get(v));
+                players.get(answer-1).getHand().remove(v);
+                System.out.println("\nMissed! " + players.get(answer-1).getName() + " Has " + players.get(answer-1).getLives() + "lives.");
+                break;
+            }
+        }
         players.get(answer-1).setLives(players.get(answer-1).getLives()-1);
         System.out.println("\nBang! " + players.get(answer-1).getName() + " Has " + players.get(answer-1).getLives() + "lives.");
         if(players.get(answer-1).getLives()<=0){
