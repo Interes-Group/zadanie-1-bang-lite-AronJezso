@@ -112,10 +112,23 @@ public class Game {
                }
                System.out.print("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
                answer = scanIn.nextInt();
+               //////////Answer control
+               while(answer < 0 || answer > players.get(i).Hand.size()){
+                   System.out.println("No bad player!\nEnter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
+                   answer = scanIn.nextInt();
+               }
+               //////////Card execusion
                while(answer > 0 && answer <= players.get(i).Hand.size()){
                    players.get(i).Hand.get(answer-1).play(players,i,Deck_of_many_things);
-                   Deck_of_many_things.add(players.get(i).Hand.get(answer-1));
-                   players.get(i).Hand.remove(answer-1);
+
+                   if((players.get(i).Hand.get(answer-1) instanceof Barrel)==false && (players.get(i).Hand.get(answer-1) instanceof Missed)==false){
+                       Deck_of_many_things.add(players.get(i).Hand.get(answer-1));
+                       players.get(i).Hand.remove(answer-1);
+                   }
+                   else if((players.get(i).Hand.get(answer-1) instanceof Barrel)==true){
+                       players.get(i).Hand.remove(answer-1);
+                   }
+
                    // Deckbuilding fuckup control
                    for (int card = 0; card != players.get(i).Hand.size(); card++) {
                        System.out.println((card + 1) + " card- " + players.get(i).Hand.get(card).getName());
@@ -133,6 +146,10 @@ public class Game {
                    }
                    System.out.print("card:");
                    answer = scanIn.nextInt();
+                   while(answer < 0 || answer > players.get(i).Hand.size()){
+                       System.out.println("No bad player!\nEnter the number of the card u want to Discard\nAnswer:");
+                       answer = scanIn.nextInt();
+                   }
                    Deck_of_many_things.add(players.get(i).Hand.get(answer-1));
                    players.get(i).Hand.remove(answer-1);
 

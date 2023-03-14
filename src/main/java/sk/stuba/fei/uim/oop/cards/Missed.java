@@ -11,6 +11,7 @@ public class Missed extends Card{
 
     @Override
     public void play(ArrayList<Player> players,int player,ArrayList<Card> deck){
+        System.out.println("No, stop it, get some help");
 
     }
 }

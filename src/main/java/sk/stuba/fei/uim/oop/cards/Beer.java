@@ -12,6 +12,6 @@ public class Beer extends Card{
 
     @Override
     public void play(ArrayList<Player> players,int player,ArrayList<Card> deck){
-
+        players.get(player).setLives(players.get(player).getLives()+1);
     }
 }

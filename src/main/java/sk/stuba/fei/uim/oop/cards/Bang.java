@@ -31,6 +31,14 @@ public class Bang extends Card {
                 break;
             }
         }
+        for(int v=0;v!=players.get(answer-1).getFront().size();v++){
+            if((players.get(answer-1).getFront().get(v) instanceof Barrel)==true){
+                if(1==(int)Math.floor(Math.random() *(4 - 1 + 1) + 1)){
+                    System.out.println("\nDoing! U hit a Barrel. " + players.get(answer-1).getName() + " Has " + players.get(answer-1).getLives() + "lives.");
+                    break;
+                }
+            }
+        }
         players.get(answer-1).setLives(players.get(answer-1).getLives()-1);
         System.out.println("\nBang! " + players.get(answer-1).getName() + " Has " + players.get(answer-1).getLives() + "lives.");
         if(players.get(answer-1).getLives()<=0){

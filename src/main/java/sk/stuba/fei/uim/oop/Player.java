@@ -32,6 +32,7 @@ public class Player {
         this.lives = lives;
     }
 
+    //////////HAND/////HAND//////
     ArrayList<Card> Hand = new ArrayList<Card>();
 
     public ArrayList<Card> getHand() {
@@ -40,5 +41,16 @@ public class Player {
 
     public void setHand(ArrayList<Card> hand) {
         Hand = hand;
+    }
+
+    //////FRONT///////FRONT//////
+    ArrayList<Card> Front = new ArrayList<>();
+
+    public ArrayList<Card> getFront() {
+        return Front;
+    }
+
+    public void addFront(Card card) {
+        Front.add(card);
     }
 }
