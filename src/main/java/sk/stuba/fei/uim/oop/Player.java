@@ -6,6 +6,16 @@ import java.util.ArrayList;
 
 public class Player {
     private String name;
+    private boolean Alive = true;
+
+    public boolean isAlive() {
+        return Alive;
+    }
+
+    public void setAlive(boolean alive) {
+        Alive = alive;
+    }
+
     private int lives;
 
     public String getName() {
@@ -20,7 +30,7 @@ public class Player {
 
     public Player(int lives) {
 
-        this.lives=lives;
+        this.lives = lives;
 
     }
 
@@ -39,8 +49,8 @@ public class Player {
         return Hand;
     }
 
-    public void setHand(ArrayList<Card> hand) {
-        Hand = hand;
+    public void addHand(Card card) {
+        Hand.add(card);
     }
 
     //////FRONT///////FRONT//////
@@ -53,4 +63,76 @@ public class Player {
     public void addFront(Card card) {
         Front.add(card);
     }
+
+    public boolean hasInstanceOf(ArrayList<Card> deck, Card card) {
+        return true;
+    }
+
+    public void PrintCards() {
+        System.out.println(getName() + " -- lives: " + getLives());
+        // card play
+        for (int card = 0; card != getFront().size(); card++) {// Deckbuilding fuckup control
+
+            System.out.println((card + 1) + " Front- " + getFront().get(card).getName());
+        }
+        for (int card = 0; card != Hand.size(); card++) {// Deckbuilding fuckup control
+
+            System.out.println((card + 1) + " Card- " + Hand.get(card).getName());
+        }
+    }
+
+    public void AmILastAlive(ArrayList<Player> players, int i) {
+        boolean restDed = true;
+        for (int d = 0; d != players.size(); d++) {
+            if (d != i && players.get(d).isAlive()) {
+                restDed = false;
+                break;
+            }
+        }
+        if (restDed) {
+            System.out.println("\n\n\n\n    " + name + " Won");
+            System.exit(0);
+        }
+
+    }
+
+    public void cara(int length) {
+        for (int i = 0; i != length; i++) {
+            System.out.print("-");
+        }
+
+    }
+
+    public void printOverlay(ArrayList<Player> players, int turns) {
+        System.out.println("Turn = " + turns);
+        cara(2);
+        System.out.print("PLAYER");
+        cara(5);
+        System.out.print("LIVES");
+        cara(6);
+        System.out.print("FRONT");
+        cara(5);
+        System.out.println();
+        for (int i = 0; i < players.size(); i++) {
+            System.out.print(i + " " + players.get(i).name + " - lives {" + players.get(i).lives + "} = ");
+            for (int y = 0; y < players.get(i).Front.size(); y++) {
+                System.out.print(players.get(i).Front.get(y).getName() + " ");
+            }
+            System.out.print("\n");
+        }
+        cara(35);
+        System.out.println();
+        System.out.println(name);
+        cara(15);
+        System.out.print("CARDS");
+        cara(15);
+        System.out.println();
+        for (int i = 0; i < Hand.size(); i++) {
+            System.out.println(i+1 + " " + Hand.get(i).getName());
+        }
+        cara(35);
+        System.out.println();
+
+    }
+
 }
