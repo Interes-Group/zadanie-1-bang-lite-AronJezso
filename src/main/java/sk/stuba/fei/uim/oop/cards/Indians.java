@@ -12,7 +12,12 @@ public class Indians extends Card{
 
     @Override
     public void play(ArrayList<Player> players,int player,ArrayList<Card> deck){
-
+        for (int v = 0; v != players.get(player).getHand().size(); v++) {
+            if ((players.get(player).getHand().get(v) instanceof Indians)) {
+                deck.add(players.get(player).getHand().get(v));
+                players.get(player).getHand().remove(v);
+                break;
+            }}
         for(int currPlayer = 0;currPlayer<players.size();currPlayer++){
             if(currPlayer!=player){
                 int check=0;
@@ -38,6 +43,7 @@ public class Indians extends Card{
             if(players.get(currPlayer).getLives()==0){
                 System.out.println("\n"+players.get(currPlayer).getName() + "has been killed, what a dumbass...");
                 players.get(currPlayer).setLives(-1);
+
                 deck.addAll(players.get(currPlayer).getHand());
                 players.get(currPlayer).getHand().removeAll(deck);
                 players.get(currPlayer).setAlive(false);

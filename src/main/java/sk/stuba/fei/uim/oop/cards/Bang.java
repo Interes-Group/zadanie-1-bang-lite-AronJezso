@@ -13,6 +13,12 @@ public class Bang extends Card {
 
     @Override
     public void play(ArrayList<Player> players, int player, ArrayList<Card> deck) {
+        for (int v = 0; v < players.get(player).getHand().size(); v++) {
+            if ((players.get(player).getHand().get(v) instanceof Bang)) {
+                deck.add(players.get(player).getHand().get(v));
+                players.get(player).getHand().remove(v);
+                break;
+            }}
         System.out.println("Choose a player to shoot :");
         for (int i = 0; i != players.size(); i++) {
             if (players.get(i).isAlive()) {

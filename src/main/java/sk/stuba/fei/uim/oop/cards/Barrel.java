@@ -11,16 +11,22 @@ public class Barrel extends Card{
     }
     @Override
     public void play(ArrayList<Player> players,int player,ArrayList<Card> deck){
-        for(int v=0;v!=players.get(player).getFront().size();v++){
-            if((players.get(player).getFront().get(v) instanceof Barrel)==true){
+        for(int v=0;v<players.get(player).getFront().size();v++){
+            if((players.get(player).getFront().get(v) instanceof Barrel)){
                 System.out.println("You already have a Barrel in front of you!");
-                break;
+                return;
 
             }
 
         }
         players.get(player).addFront(new Barrel());
         System.out.println("A Barrel has been placed in front of you Cheef!");
+        for (int v = 0; v < players.get(player).getHand().size(); v++) {
+            if ((players.get(player).getHand().get(v) instanceof Barrel)) {
+                deck.add(players.get(player).getHand().get(v));
+                players.get(player).getHand().remove(v);
+                break;
+            }}
     }
 
 }

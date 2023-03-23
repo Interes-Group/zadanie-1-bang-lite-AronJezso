@@ -102,8 +102,13 @@ public class Player {
         }
 
     }
-
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED = "\u001B[31m";
     public void printOverlay(ArrayList<Player> players, int turns) {
+        for (int w = 0; w != 6; w++) {
+            System.out.println();
+        }
         System.out.println("Turn = " + turns);
         cara(2);
         System.out.print("PLAYER");
@@ -114,11 +119,17 @@ public class Player {
         cara(5);
         System.out.println();
         for (int i = 0; i < players.size(); i++) {
-            System.out.print(i + " " + players.get(i).name + " - lives {" + players.get(i).lives + "} = ");
-            for (int y = 0; y < players.get(i).Front.size(); y++) {
-                System.out.print(players.get(i).Front.get(y).getName() + " ");
+            if(players.get(i).isAlive()){
+                System.out.print(i+1 + " " + players.get(i).name + " - lives "+ ANSI_GREEN + "{" + players.get(i).lives + "}"+ANSI_RESET+" = ");
+                for (int y = 0; y < players.get(i).Front.size(); y++) {
+                    System.out.print(players.get(i).Front.get(y).getName() + " ");
+                }
+                System.out.print("\n");
             }
-            System.out.print("\n");
+            if(!players.get(i).isAlive()){
+                System.out.println(ANSI_RED +i+1 + " " + players.get(i).name + " - DED" +ANSI_RESET);
+
+            }
         }
         cara(35);
         System.out.println();

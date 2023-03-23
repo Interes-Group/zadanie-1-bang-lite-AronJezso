@@ -80,7 +80,7 @@ public class Game {
             Deck_of_many_things.add(new Bang());
         }
         for (int i = 0; i != 15; i++) {
-            Deck_of_many_things.add(new Missed());
+            Deck_of_many_things.add(new Cat_Balou());//////////////////////////
         }
         for (int i = 0; i != 8; i++) {
             Deck_of_many_things.add(new Beer());
@@ -127,9 +127,7 @@ public class Game {
                         currPlayer.Hand.add(Deck_of_many_things.get(0));
                         Deck_of_many_things.remove(0);
                     }
-                    for (int w = 0; w != 25; w++) {
-                        System.out.println();
-                    }
+
                     currPlayer.printOverlay(players,turns);
                     System.out.print("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
                     answer = scanIn.nextInt();
@@ -144,17 +142,8 @@ public class Game {
                         currPlayer.AmILastAlive(players, i);
                         i = players.indexOf(currPlayer);
 
-                        if (!(players.get(i).Hand.get(answer - 1) instanceof Barrel) && !(players.get(i).Hand.get(answer - 1) instanceof Missed)) {
-                            Deck_of_many_things.add(players.get(i).Hand.get(answer - 1));
-                            players.get(i).Hand.remove(answer - 1);
-                        } else if ((players.get(i).Hand.get(answer - 1) instanceof Barrel)) {
-                            players.get(i).Hand.remove(answer - 1);
-                        }
-
                         // Deckbuilding fuckup control
-                        for (int w = 0; w != 25; w++) {
-                            System.out.println();
-                        }
+
                         currPlayer.printOverlay(players,turns);
                         System.out.print("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
                         answer = scanIn.nextInt();
@@ -163,9 +152,7 @@ public class Game {
                     // Too many cards
 
                 while (currPlayer.Hand.size() > currPlayer.getLives()) {
-                    for (int w = 0; w != 25; w++) {
-                        System.out.println();
-                    }
+
                     currPlayer.printOverlay(players,turns);
                     System.out.println("you have too many cards select one to discard");
                     System.out.print("card:");
