@@ -21,7 +21,7 @@ public class Bang extends Card {
             }}
         System.out.println("Choose a player to shoot :");
         for (int i = 0; i != players.size(); i++) {
-            if (players.get(i).isAlive()) {
+            if (players.get(i).isAlive() && player != i) {
                 System.out.println(i + 1 + " " + players.get(i).getName()); // Get player names
             }
 

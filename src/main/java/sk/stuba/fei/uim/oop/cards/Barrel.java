@@ -4,7 +4,7 @@ import sk.stuba.fei.uim.oop.*;
 
 import java.util.ArrayList;
 
-public class Barrel extends Card{
+public class Barrel extends BlueCard{
 
     public Barrel() {
         super("Barrel");
@@ -27,6 +27,12 @@ public class Barrel extends Card{
                 players.get(player).getHand().remove(v);
                 break;
             }}
+    }
+
+    @Override
+    public boolean activation(ArrayList<Player> players, int player, ArrayList<Card> deck){
+
+        return false;
     }
 
 }

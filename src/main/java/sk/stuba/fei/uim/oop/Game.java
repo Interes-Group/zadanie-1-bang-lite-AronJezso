@@ -77,10 +77,10 @@ public class Game {
         }
         /////BROWN CARDS////
         for (int i = 0; i != 30; i++) {
-            Deck_of_many_things.add(new Bang());
+            Deck_of_many_things.add(new Prison());
         }
         for (int i = 0; i != 15; i++) {
-            Deck_of_many_things.add(new Cat_Balou());//////////////////////////
+            Deck_of_many_things.add(new Missed());//////////////////////////
         }
         for (int i = 0; i != 8; i++) {
             Deck_of_many_things.add(new Beer());
@@ -120,8 +120,22 @@ public class Game {
 
         for (int turns = 1; true; turns++) {
             for (int i = 0; i != players.size(); i++) {
+                boolean escaped=true;
+
                 currPlayer = players.get(i);
-                if (currPlayer.isAlive()) {
+                // STATUS CHECK
+                for (int v = 0; v < currPlayer.getFront().size(); v++) {
+                    if ((currPlayer.getFront().get(v) instanceof Prison)) {
+                        escaped = ((Prison) currPlayer.getFront().get(v)).activation(players, i, Deck_of_many_things);
+                        }}
+
+                if (currPlayer.isAlive() && escaped) {
+
+
+
+
+
+
                     // 2 CARD DRAWING
                     for (int card = 0; card != 2; card++) {
                         currPlayer.Hand.add(Deck_of_many_things.get(0));
