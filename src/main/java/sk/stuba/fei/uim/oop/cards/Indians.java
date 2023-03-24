@@ -47,16 +47,7 @@ public class Indians extends Card{
                 deck.addAll(players.get(currPlayer).getHand());
                 players.get(currPlayer).getHand().removeAll(deck);
                 players.get(currPlayer).setAlive(false);
-
-
-
             }
-
-
-
         }
-
-
-
     }
 }

@@ -43,7 +43,7 @@ public class Player {
     }
 
     //////////HAND/////HAND//////
-    ArrayList<Card> Hand = new ArrayList<>();
+    private ArrayList<Card> Hand = new ArrayList<>();
 
     public ArrayList<Card> getHand() {
         return Hand;
@@ -51,7 +51,7 @@ public class Player {
 
 
     //////FRONT///////FRONT//////
-    ArrayList<Card> Front = new ArrayList<>();
+    private ArrayList<Card> Front = new ArrayList<>();
 
     public ArrayList<Card> getFront() {
         return Front;
