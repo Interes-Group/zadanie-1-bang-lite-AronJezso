@@ -1,24 +1,21 @@
 package sk.stuba.fei.uim.oop;
 
 import sk.stuba.fei.uim.oop.cards.*;
+import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 public class Game {
     private final ArrayList<Player> players;
-    private final Scanner scanIn;
     private final ArrayList<Card> Deck_of_many_things;
+    private Player currPlayer;
 
     public Game() {
         players = new ArrayList<>();
-        scanIn = new Scanner(System.in);
         Deck_of_many_things = new ArrayList<>();
         settings();
     }
-
-    private Player currPlayer;
 
     public Player getCurrPlayer(Player player) {
         return currPlayer;
@@ -31,14 +28,12 @@ public class Game {
     public void settings() {
 
         int player_count;
-        System.out.print("BANG\nI geet you citizen!\nPlease enter your player count from 2 - 4 :");
-        player_count = scanIn.nextInt();
+        player_count = ZKlavesnice.readInt("BANG\nI geet you citizen!\nPlease enter your player count from 2 - 4 :");
         System.out.println("You entered " + player_count + "!");
 
         while (player_count < 2 || player_count > 4) {
             System.out.println("thats not between 2-4");
-            System.out.print("Please enter your player count from 2 - 4 :");
-            player_count = scanIn.nextInt();
+            player_count = ZKlavesnice.readInt("Please enter your player count from 2 - 4 :");
             System.out.println("You entered " + player_count + "!");
         }
         System.out.println("Thank you");
@@ -77,10 +72,10 @@ public class Game {
         }
         /////BROWN CARDS////
         for (int i = 0; i != 30; i++) {
-            Deck_of_many_things.add(new Prison());
+            Deck_of_many_things.add(new Bang());
         }
         for (int i = 0; i != 15; i++) {
-            Deck_of_many_things.add(new Missed());//////////////////////////
+            Deck_of_many_things.add(new Missed());
         }
         for (int i = 0; i != 8; i++) {
             Deck_of_many_things.add(new Beer());
@@ -120,20 +115,25 @@ public class Game {
 
         for (int turns = 1; true; turns++) {
             for (int i = 0; i != players.size(); i++) {
-                boolean escaped=true;
+                boolean escaped = true;
 
                 currPlayer = players.get(i);
                 // STATUS CHECK
                 for (int v = 0; v < currPlayer.getFront().size(); v++) {
-                    if ((currPlayer.getFront().get(v) instanceof Prison)) {
+                    if (currPlayer.getFront().get(v) instanceof Dynamite) {
+                        ((Dynamite) currPlayer.getFront().get(v)).activation(players, i, Deck_of_many_things);
+                    }
+                }
+                for (int v = 0; v < currPlayer.getFront().size(); v++) {
+                    if (currPlayer.getFront().get(v) instanceof Prison) {
                         escaped = ((Prison) currPlayer.getFront().get(v)).activation(players, i, Deck_of_many_things);
-                        }}
-
+                    }
+                }
                 if (currPlayer.isAlive() && escaped) {
-
-
-
-
+                    //GIMME SPACE
+                    for (int w = 0; w != 4; w++) {
+                        System.out.println();
+                    }
 
 
                     // 2 CARD DRAWING
@@ -142,13 +142,11 @@ public class Game {
                         Deck_of_many_things.remove(0);
                     }
 
-                    currPlayer.printOverlay(players,turns);
-                    System.out.print("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
-                    answer = scanIn.nextInt();
+                    currPlayer.printOverlay(players, turns);
+                    answer = ZKlavesnice.readInt("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
                     //////////Answer control
                     while (answer < 0 || answer > currPlayer.Hand.size()) {
-                        System.out.println("No bad player!\nEnter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
-                        answer = scanIn.nextInt();
+                        answer = ZKlavesnice.readInt("No bad player!\nEnter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
                     }
                     //////////Card execusion
                     while (answer > 0 && answer <= currPlayer.Hand.size()) {
@@ -158,32 +156,30 @@ public class Game {
 
                         // Deckbuilding fuckup control
 
-                        currPlayer.printOverlay(players,turns);
-                        System.out.print("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
-                        answer = scanIn.nextInt();
+                        currPlayer.printOverlay(players, turns);
+                        answer = ZKlavesnice.readInt("Enter the number of the card u want to play or enter 0 if u dont want to play a card\nAnswer:");
 
                     }
                     // Too many cards
 
-                while (currPlayer.Hand.size() > currPlayer.getLives()) {
+                    while (currPlayer.Hand.size() > currPlayer.getLives()) {
 
-                    currPlayer.printOverlay(players,turns);
-                    System.out.println("you have too many cards select one to discard");
-                    System.out.print("card:");
-                    answer = scanIn.nextInt();
-                    while (answer <= 0 || answer > players.get(i).Hand.size()) {
-                        for (int w = 0; w != 25; w++) {
-                            System.out.println();
+                        currPlayer.printOverlay(players, turns);
+                        answer = ZKlavesnice.readInt("you have too many cards select one to discard\ncard:");
+                        while (answer <= 0 || answer > players.get(i).Hand.size()) {
+                            for (int w = 0; w != 25; w++) {
+                                System.out.println();
+                            }
+                            currPlayer.printOverlay(players, turns);
+                            answer = ZKlavesnice.readInt("No bad player!\nEnter the number of the card u want to Discard\nAnswer:");
                         }
-                        currPlayer.printOverlay(players,turns);
-                        System.out.println("No bad player!\nEnter the number of the card u want to Discard\nAnswer:");
-                        answer = scanIn.nextInt();
+                        Deck_of_many_things.add(players.get(i).Hand.get(answer - 1));
+                        players.get(i).Hand.remove(answer - 1);
+
+
                     }
-                    Deck_of_many_things.add(players.get(i).Hand.get(answer - 1));
-                    players.get(i).Hand.remove(answer - 1);
 
-
-                }}
+                }
 
                 //currPlayer.AmILastAlive(players, i);
             }

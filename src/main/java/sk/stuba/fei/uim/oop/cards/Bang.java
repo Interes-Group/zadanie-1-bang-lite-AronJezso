@@ -56,7 +56,7 @@ public class Bang extends Card {
         }
         players.get(answer - 1).setLives(players.get(answer - 1).getLives() - 1);
         System.out.println("\nBang! " + players.get(answer - 1).getName() + " Has " + players.get(answer - 1).getLives() + "lives.");
-        if (players.get(answer - 1).getLives() <= 0) {
+        if (!players.get(answer - 1).isAlive()) {
             System.out.println("\n" + players.get(answer - 1).getName() + "has been killed, what a dumbass...");
             players.get(answer - 1).getHand().addAll(deck);
             players.get(answer - 1).setAlive(false);

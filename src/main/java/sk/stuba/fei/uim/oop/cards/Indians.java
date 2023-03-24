@@ -40,7 +40,7 @@ public class Indians extends Card{
 
 
             }
-            if(players.get(currPlayer).getLives()==0){
+            if(!players.get(currPlayer).isAlive()){
                 System.out.println("\n"+players.get(currPlayer).getName() + "has been killed, what a dumbass...");
                 players.get(currPlayer).setLives(-1);
 

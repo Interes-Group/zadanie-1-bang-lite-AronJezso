@@ -9,9 +9,14 @@ public class Player {
     private boolean Alive = true;
 
     public boolean isAlive() {
+        if(lives > 0){
+            Alive = true;
+        }
+        else{
+            Alive = false;
+        }
         return Alive;
     }
-
     public void setAlive(boolean alive) {
         Alive = alive;
     }
@@ -106,9 +111,6 @@ public class Player {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RED = "\u001B[31m";
     public void printOverlay(ArrayList<Player> players, int turns) {
-        for (int w = 0; w != 6; w++) {
-            System.out.println();
-        }
         System.out.println("Turn = " + turns);
         cara(2);
         System.out.print("PLAYER");
