@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Beer extends Card{
 
     public Beer() {
-        super("Beer");
+        super(ANSI_YELLOW+"Beer"+ANSI_RESET);
     }
 
     @Override

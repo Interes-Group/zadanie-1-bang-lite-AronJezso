@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Missed extends Card{
     public Missed() {
-        super("Missed");
+        super(ANSI_WHITE+"Missed"+ANSI_RESET);
     }
 
     @Override

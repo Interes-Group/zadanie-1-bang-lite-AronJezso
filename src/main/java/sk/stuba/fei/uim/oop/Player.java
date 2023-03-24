@@ -9,12 +9,7 @@ public class Player {
     private boolean Alive = true;
 
     public boolean isAlive() {
-        if(lives > 0){
-            Alive = true;
-        }
-        else{
-            Alive = false;
-        }
+        Alive = lives > 0;
         return Alive;
     }
     public void setAlive(boolean alive) {
@@ -48,15 +43,12 @@ public class Player {
     }
 
     //////////HAND/////HAND//////
-    ArrayList<Card> Hand = new ArrayList<Card>();
+    ArrayList<Card> Hand = new ArrayList<>();
 
     public ArrayList<Card> getHand() {
         return Hand;
     }
 
-    public void addHand(Card card) {
-        Hand.add(card);
-    }
 
     //////FRONT///////FRONT//////
     ArrayList<Card> Front = new ArrayList<>();
@@ -67,23 +59,6 @@ public class Player {
 
     public void addFront(Card card) {
         Front.add(card);
-    }
-
-    public boolean hasInstanceOf(ArrayList<Card> deck, Card card) {
-        return true;
-    }
-
-    public void PrintCards() {
-        System.out.println(getName() + " -- lives: " + getLives());
-        // card play
-        for (int card = 0; card != getFront().size(); card++) {// Deckbuilding fuckup control
-
-            System.out.println((card + 1) + " Front- " + getFront().get(card).getName());
-        }
-        for (int card = 0; card != Hand.size(); card++) {// Deckbuilding fuckup control
-
-            System.out.println((card + 1) + " Card- " + Hand.get(card).getName());
-        }
     }
 
     public void AmILastAlive(ArrayList<Player> players, int i) {
@@ -110,19 +85,21 @@ public class Player {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_CYAN = "\u001B[36m";
     public void printOverlay(ArrayList<Player> players, int turns) {
         System.out.println("Turn = " + turns);
         cara(2);
-        System.out.print("PLAYER");
+        System.out.print(ANSI_YELLOW+"PLAYER"+ANSI_RESET);
         cara(5);
-        System.out.print("LIVES");
+        System.out.print(ANSI_GREEN+"LIVES"+ANSI_RESET);
         cara(6);
-        System.out.print("FRONT");
+        System.out.print(ANSI_CYAN+"FRONT"+ANSI_RESET);
         cara(5);
         System.out.println();
         for (int i = 0; i < players.size(); i++) {
             if(players.get(i).isAlive()){
-                System.out.print(i+1 + " " + players.get(i).name + " - lives "+ ANSI_GREEN + "{" + players.get(i).lives + "}"+ANSI_RESET+" = ");
+                System.out.print(i+1 + " " +ANSI_YELLOW+ players.get(i).name +ANSI_RESET+ " - lives "+ ANSI_GREEN + "{" + players.get(i).lives + "}"+ANSI_RESET+" = ");
                 for (int y = 0; y < players.get(i).Front.size(); y++) {
                     System.out.print(players.get(i).Front.get(y).getName() + " ");
                 }

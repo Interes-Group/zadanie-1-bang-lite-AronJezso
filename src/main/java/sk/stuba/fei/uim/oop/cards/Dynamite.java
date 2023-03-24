@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Dynamite extends Card {
     public Dynamite() {
-        super("Dynamite");
+        super(ANSI_RED+"Dynamite"+ANSI_RESET);
     }
 
     @Override
@@ -61,6 +61,7 @@ public class Dynamite extends Card {
             for (int v = 0; v < currPlayer.getFront().size(); v++) {
                 if (currPlayer.getFront().get(v) instanceof Dynamite) {
                     currPlayer.getFront().remove(v);
+                    break;
                 }
             }
             players.get(next).getFront().add(new Dynamite());

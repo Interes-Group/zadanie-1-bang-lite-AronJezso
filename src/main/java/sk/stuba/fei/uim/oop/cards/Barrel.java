@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Barrel extends BlueCard{
 
     public Barrel() {
-        super("Barrel");
+        super(ANSI_GREEN+"Barrel"+ANSI_RESET);
     }
     @Override
     public void play(ArrayList<Player> players,int player,ArrayList<Card> deck){

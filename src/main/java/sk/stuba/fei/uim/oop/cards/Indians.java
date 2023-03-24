@@ -3,11 +3,11 @@ package sk.stuba.fei.uim.oop.cards;
 import sk.stuba.fei.uim.oop.Player;
 
 import java.util.ArrayList;
-import java.util.Collection;
+
 
 public class Indians extends Card{
     public Indians() {
-        super("Indians");
+        super(ANSI_PURPLE+"Indians"+ANSI_RESET);
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Prison extends BlueCard{
     public Prison() {
-        super("Prison");
+        super(ANSI_BLUE+"Prison"+ANSI_RESET);
     }
 
     @Override

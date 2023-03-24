@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Cat_Balou extends Card{
     public Cat_Balou() {
-        super("Cat Balou");
+        super(ANSI_CYAN+"Cat Balou"+ANSI_RESET);
     }
 
     @Override

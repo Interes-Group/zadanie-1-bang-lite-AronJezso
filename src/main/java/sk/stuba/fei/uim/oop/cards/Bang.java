@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Bang extends Card {
 
     public Bang() {
-        super("Bang");
+        super(ANSI_RED+"Bang"+ANSI_RESET);
     }
 
     @Override
