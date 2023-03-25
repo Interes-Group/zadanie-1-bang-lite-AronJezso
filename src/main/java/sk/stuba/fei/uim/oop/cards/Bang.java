@@ -27,15 +27,15 @@ public class Bang extends Card {
 
         }
         int answer = player + 1;
-        while (answer == player + 1 || answer > players.size() || answer <= 0 || !players.get(answer-1).isAlive()) {
+        while (answer == player + 1 || answer > players.size() || answer -1<= 0 || !players.get(answer-1).isAlive()) {
             answer = ZKlavesnice.readInt("Answer:");
             if (player == answer - 1) {
                 System.out.print("\nYou cant shoot yourself(Lets not be that kinky)\nTry again:");
             }
-            if (answer > players.size() || answer <= 0) {
+            if (answer > players.size() || answer-1 <= 0) {
                 System.out.print("\nOut of range\nTry again:");
             }
-            if(!players.get(answer-1).isAlive()){
+            else if(!players.get(answer-1).isAlive()){
                 System.out.print("\nDAT PLAYER DED\nTry again:");
             }
         }
