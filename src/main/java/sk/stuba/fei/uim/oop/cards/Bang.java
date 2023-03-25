@@ -1,9 +1,9 @@
 package sk.stuba.fei.uim.oop.cards;
 
 import sk.stuba.fei.uim.oop.Player;
+import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Bang extends Card {
 
@@ -26,15 +26,17 @@ public class Bang extends Card {
             }
 
         }
-        Scanner scanIn = new Scanner(System.in);
         int answer = player + 1;
-        while (answer == player + 1 || answer > players.size() || answer <= 0) {
-            answer = scanIn.nextInt();
+        while (answer == player + 1 || answer > players.size() || answer <= 0 || !players.get(answer-1).isAlive()) {
+            answer = ZKlavesnice.readInt("Answer:");
             if (player == answer - 1) {
                 System.out.print("\nYou cant shoot yourself(Lets not be that kinky)\nTry again:");
             }
             if (answer > players.size() || answer <= 0) {
                 System.out.print("\nOut of range\nTry again:");
+            }
+            if(!players.get(answer-1).isAlive()){
+                System.out.print("\nDAT PLAYER DED\nTry again:");
             }
         }
 

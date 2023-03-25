@@ -1,9 +1,7 @@
 package sk.stuba.fei.uim.oop.cards;
-
 import sk.stuba.fei.uim.oop.Player;
-
+import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Cat_Balou extends Card{
     public Cat_Balou() {
@@ -15,26 +13,23 @@ public class Cat_Balou extends Card{
 
         System.out.println("Choose a player :");
         for (int i = 0; i != players.size(); i++) {
-            if (players.get(i).isAlive()){
-                if(players.get(i)!=players.get(player))
+            if (players.get(i).isAlive() && players.get(i)!=players.get(player)){
                 System.out.println(i + 1 + " " + players.get(i).getName()); // Get player names
             }
 
 
         }
-        Scanner scanIn = new Scanner(System.in);
         int answer;
         do{
-            answer = scanIn.nextInt();
-            if (answer > players.size() || answer <= 0 || answer == player+1) {
+            answer = ZKlavesnice.readInt("Answer: ");
+            if (answer > players.size() || answer <= 0 || answer == player+1 || !players.get(answer-1).isAlive()) {
                 System.out.print("\nOut of range\nTry again:");
             }
-        }while(answer == player+1 || answer > players.size() || answer <= 0);
+        }while(answer == player+1 || answer > players.size() || answer <= 0 || !players.get(answer-1).isAlive());
 
         int chosenWay;
         do{
-            System.out.println("Do you Want to throw away a card from his FRONT or HAND?\n1=FRONT\n2=HAND");
-            chosenWay = scanIn.nextInt();
+            chosenWay = ZKlavesnice.readInt("Do you Want to throw away a card from his FRONT or HAND?\n1=FRONT\n2=HAND");
         }while(chosenWay != 1 && chosenWay != 2);
 
         if(chosenWay==1){
@@ -43,9 +38,10 @@ public class Cat_Balou extends Card{
                 return;
             }
             else{
-                int rand = (int) Math.floor(Math.random() * (players.get(answer-1).getFront().size()-1) + 0);
+                int rand = (int) Math.floor(Math.random() * (players.get(answer-1).getFront().size()) + 1)-1;
                 deck.add(players.get(answer-1).getFront().get(rand));
                 players.get(answer-1).getFront().remove(rand);
+                //remove card
                 for (int v = 0; v < players.get(player).getHand().size(); v++) {
                     if ((players.get(player).getHand().get(v) instanceof Cat_Balou)) {
                         deck.add(players.get(player).getHand().get(v));
@@ -60,8 +56,8 @@ public class Cat_Balou extends Card{
                 return;
             }
             else{
-                int rand = (int) Math.floor(Math.random() * (players.get(answer-1).getFront().size()-1) + 0);
-                deck.add(players.get(answer-1).getFront().get(rand));
+                int rand = (int) Math.floor(Math.random() * (players.get(answer-1).getFront().size()) + 1)-1;
+                deck.add(players.get(answer-1).getHand().get(rand));
                 players.get(answer-1).getHand().remove(rand);
                 for (int v = 0; v < players.get(player).getHand().size(); v++) {
                     if ((players.get(player).getHand().get(v) instanceof Cat_Balou)) {

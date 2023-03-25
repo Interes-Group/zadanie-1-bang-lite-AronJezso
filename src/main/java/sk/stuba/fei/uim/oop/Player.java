@@ -106,7 +106,7 @@ public class Player {
                 System.out.print("\n");
             }
             if(!players.get(i).isAlive()){
-                System.out.println(ANSI_RED +i+1 + " " + players.get(i).name + " - DED" +ANSI_RESET);
+                System.out.println(ANSI_RED +(i+1) + " " + players.get(i).name + " - DED" +ANSI_RESET);
 
             }
         }
