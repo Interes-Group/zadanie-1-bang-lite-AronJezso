@@ -4,16 +4,15 @@ import sk.stuba.fei.uim.oop.cards.*;
 import sk.stuba.fei.uim.oop.utility.ZKlavesnice;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Game {
     private final ArrayList<Player> players;
-    private final ArrayList<Card> DeckOfManyThings;
+    private final Deck Deck;
     private Player currPlayer;
 
     public Game() {
         players = new ArrayList<>();
-        DeckOfManyThings = new ArrayList<>();
+        Deck = new Deck();
         settings();
     }
 
@@ -61,39 +60,39 @@ public class Game {
         }
         /////BLUE CARDS/////BLUE CARDS////BLUE CARDS////BLUE CARDS///////////
 
-        DeckOfManyThings.add(new Barrel());
-        DeckOfManyThings.add(new Barrel());
-        DeckOfManyThings.add(new Dynamite());
+        Deck.addDeck(new Barrel());
+        Deck.addDeck(new Barrel());
+        Deck.addDeck(new Dynamite());
         for (int i = 0; i != 3; i++) {
-            DeckOfManyThings.add(new Prison());
+            Deck.addDeck(new Prison());
         }
         /////BROWN CARDS////
-        for (int i = 0; i != 30; i++) {
-            DeckOfManyThings.add(new Bang());
+        for (int i = 0; i != 30; i++) {//30
+            Deck.addDeck(new Bang());
         }
-        for (int i = 0; i != 15; i++) {
-            DeckOfManyThings.add(new Missed());
+        for (int i = 0; i != 15; i++) {//15
+            Deck.addDeck(new Missed());
         }
-        for (int i = 0; i != 8; i++) {
-            DeckOfManyThings.add(new Beer());
+        for (int i = 0; i != 8; i++) {//8
+            Deck.addDeck(new Beer());
         }
-        for (int i = 0; i != 6; i++) {
-            DeckOfManyThings.add(new Cat_Balou());
+        for (int i = 0; i != 6; i++) {//6
+            Deck.addDeck(new CatBalou());
         }
-        for (int i = 0; i != 4; i++) {
-            DeckOfManyThings.add(new Stagecoach());
+        for (int i = 0; i != 4; i++) {//4
+            Deck.addDeck(new Stagecoach());
         }
         for (int i = 0; i != 2; i++) {
-            DeckOfManyThings.add(new Indians());
+            Deck.addDeck(new Indians());
         }
-        Collections.shuffle(DeckOfManyThings);
+        Deck.Shuffle();
 
         ///////////////////////////////
 
         for (int k = players.size() - 1; k != -1; k--) {
             for (int i = 0; i != 4; i++) {
-                players.get(k).getHand().add(DeckOfManyThings.get(0));
-                DeckOfManyThings.remove(0);
+                players.get(k).getHand().add(Deck.getDeck().get(0));
+                Deck.getDeck().remove(0);
             }
         }
         Game_loop();
@@ -110,12 +109,12 @@ public class Game {
                 // STATUS CHECK
                 for (int v = 0; v < currPlayer.getFront().size(); v++) {
                     if (currPlayer.getFront().get(v) instanceof Dynamite) {
-                        ((Dynamite) currPlayer.getFront().get(v)).activation(players, i, DeckOfManyThings);
+                        ((Dynamite) currPlayer.getFront().get(v)).activation(players, i, Deck.getBin());
                     }
                 }
                 for (int v = 0; v < currPlayer.getFront().size(); v++) {
                     if (currPlayer.getFront().get(v) instanceof Prison) {
-                        escaped = ((Prison) currPlayer.getFront().get(v)).activation(players, i, DeckOfManyThings);
+                        escaped = ((Prison) currPlayer.getFront().get(v)).activation(players, i, Deck.getBin());
                     }
                 }
                 if (currPlayer.isAlive() && escaped) {
@@ -126,13 +125,15 @@ public class Game {
 
 
                     // 2 CARD DRAWING
-                    if (DeckOfManyThings.size() >= 2){
-                        for (int card = 0; card != 2; card++) {
-                            currPlayer.getHand().add(DeckOfManyThings.get(0));
-                            DeckOfManyThings.remove(0);
-                        }
+                    if (Deck.getDeck().size() < 2) {
+                        Deck.Shuffle();
                     }
-                    else{
+                    if (Deck.getDeck().size() >= 2) {
+                        for (int card = 0; card != 2; card++) {
+                            currPlayer.getHand().add(Deck.getDeck().get(0));
+                            Deck.getDeck().remove(0);
+                        }
+                    } else {
                         System.out.println("\nNot enough cards in Deck");
                     }
 
@@ -144,10 +145,9 @@ public class Game {
                     }
                     //////////Card execution
                     while (answer > 0 && answer <= currPlayer.getHand().size()) {
-                        currPlayer.getHand().get(answer - 1).play(players, i, DeckOfManyThings);
+                        currPlayer.getHand().get(answer - 1).play(players, i, Deck);
                         currPlayer.AmILastAlive(players, i);
                         i = players.indexOf(currPlayer);
-
 
 
                         currPlayer.printOverlay(players, turns);
@@ -165,7 +165,7 @@ public class Game {
                             currPlayer.printOverlay(players, turns);
                             answer = ZKlavesnice.readInt("No bad player!\nEnter the number of the card u want to Discard\nAnswer:");
                         }
-                        DeckOfManyThings.add(players.get(i).getHand().get(answer - 1));
+                        Deck.getBin().add(players.get(i).getHand().get(answer - 1));
                         players.get(i).getHand().remove(answer - 1);
 
 

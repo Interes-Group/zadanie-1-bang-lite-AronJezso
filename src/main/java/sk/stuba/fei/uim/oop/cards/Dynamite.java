@@ -1,16 +1,17 @@
 package sk.stuba.fei.uim.oop.cards;
 
+import sk.stuba.fei.uim.oop.Deck;
 import sk.stuba.fei.uim.oop.Player;
 
 import java.util.ArrayList;
 
 public class Dynamite extends Card {
     public Dynamite() {
-        super(ANSI_RED+"Dynamite"+ANSI_RESET);
+        super(ANSI_RED + "Dynamite" + ANSI_RESET);
     }
 
     @Override
-    public void play(ArrayList<Player> players, int player, ArrayList<Card> deck) {
+    public void play(ArrayList<Player> players, int player, Deck deck) {
         for (int v = 0; v < players.get(player).getFront().size(); v++) {
             if (players.get(player).getFront().get(v) instanceof Dynamite) {
                 System.out.println("You already have a " + ANSI_RED + "Dynamite" + ANSI_RESET + " in front of you!");

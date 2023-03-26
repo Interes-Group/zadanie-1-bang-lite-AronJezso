@@ -20,7 +20,7 @@ public class Card {
     }
 
     public String getName() {return name;}
-    public void play(ArrayList<Player> players,int player,ArrayList<Card> deck){
+    public void play(ArrayList<Player> players,int player,Deck deck){
     }
 
 
